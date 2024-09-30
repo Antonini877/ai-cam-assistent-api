@@ -34,6 +34,8 @@ func ProcessImage(filePath string) (string, error) {
     }
     writer.Close()
 
+    return "teste ", nil
+
     // Enviar a imagem para a API de IA (substitua pela URL da API real)
     req, err := http.NewRequest("POST", "https://api.gpt-4.com/process-image", &b)
     if err != nil {

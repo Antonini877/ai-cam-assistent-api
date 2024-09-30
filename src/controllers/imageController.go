@@ -2,10 +2,8 @@ package controllers
 
 import (
     "net/http"
-    "os"
-    "io"
-    "src/models"
-    "src/views"
+    "github.com/Antonini877/ai-cam-assistent-api/views"
+    "github.com/Antonini877/ai-cam-assistent-api/services"
     "github.com/gin-gonic/gin"
 )
 
@@ -24,7 +22,7 @@ func UploadImage(c *gin.Context) {
     }
 
     // Chamar a função para enviar a imagem para a API do GPT-4
-    result, err := models.ProcessImage(filePath)
+    result, err := services.ProcessImage(filePath)
     if err != nil {
         views.RenderJSON(c, http.StatusInternalServerError, gin.H{"error": "Failed to process the image"})
         return
@@ -32,3 +30,4 @@ func UploadImage(c *gin.Context) {
 
     views.RenderJSON(c, http.StatusOK, gin.H{"result": result})
 }
+

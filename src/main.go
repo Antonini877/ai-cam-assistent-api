@@ -1,13 +1,22 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+    "github.com/gin-gonic/gin"
+    "github.com/Antonini877/ai-cam-assistent-api/controllers" 
+)
 
 func main() {
     r := gin.Default()
-    r.GET("/ping", func(c *gin.Context) {
+
+    // Rota para ping
+    r.GET("/", func(c *gin.Context) {
         c.JSON(200, gin.H{
-            "message": "pong",
+            "status": "up",
         })
     })
-    r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+
+    // Rota para upload de imagem
+    r.POST("/upload", controllers.UploadImage) // Chama a função UploadImage do controller
+
+    r.Run() // escuta e serve na 0.0.0.0:8080 (para Windows "localhost:8080")
 }
